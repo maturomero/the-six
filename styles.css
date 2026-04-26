@@ -1,7 +1,4 @@
-/* ==========================================================
-   The Six — Estilos complementarios a Tailwind
-   Estética: clínica, confiable, limpia (estilo IntraMed)
-   ========================================================== */
+
 
 html { scroll-behavior: smooth; }
 
@@ -15,9 +12,6 @@ body {
   color: #0E1B33;
 }
 
-/* ==========================================================
-   SOMBRAS
-   ========================================================== */
 
 .shadow-soft {
   box-shadow: 0 1px 2px rgba(14, 27, 51, 0.04),
@@ -33,12 +27,15 @@ body {
   box-shadow: 0 4px 14px rgba(0, 174, 239, 0.25);
 }
 
-/* ==========================================================
-   NAVBAR
-   ========================================================== */
 
 #navbar.scrolled > div > div {
   box-shadow: 0 4px 24px rgba(14, 27, 51, 0.08);
+}
+
+/* Link activo en navbar (scrollspy) */
+header nav a.nav-active {
+  color: #00AEEF;
+  font-weight: 600;
 }
 
 .mobile-link {
@@ -53,9 +50,6 @@ body {
   color: #00AEEF;
 }
 
-/* ==========================================================
-   ANIMACIÓN DE REVELADO AL SCROLL
-   ========================================================== */
 
 .reveal {
   opacity: 0;
@@ -69,9 +63,6 @@ body {
   transform: translateY(0);
 }
 
-/* ==========================================================
-   FEATURE CARDS (sección Nosotros)
-   ========================================================== */
 
 .feature-card {
   background: #ffffff;
@@ -97,9 +88,6 @@ body {
   margin-bottom: 1rem;
 }
 
-/* ==========================================================
-   PROFESSIONAL CARDS
-   ========================================================== */
 
 .prof-card {
   background: #ffffff;
@@ -202,10 +190,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* ==========================================================
-   PLACEHOLDERS PARA IMÁGENES FALTANTES
-   Gradientes celestes coherentes con la marca
-   ========================================================== */
 
 .placeholder {
   position: relative;
@@ -221,31 +205,49 @@ body {
   font-weight: 700;
 }
 
-.placeholder.p-tooth::before { content: "🦷"; filter: grayscale(0.2); opacity: 0.7; }
-.placeholder.p-pediatrics::before { content: "👶"; opacity: 0.8; }
-.placeholder.p-kine::before { content: "🤸"; opacity: 0.8; }
-.placeholder.p-sport::before { content: "🏃"; opacity: 0.8; }
-.placeholder.p-team::before { content: "👥"; opacity: 0.7; }
-.placeholder.p-clinic::before { content: "🏥"; opacity: 0.7; }
+.placeholder.p-tooth::before { content: "#"; filter: grayscale(0.2); opacity: 0.7; }
+.placeholder.p-pediatrics::before { content: "#"; opacity: 0.8; }
+.placeholder.p-kine::before { content: "#"; opacity: 0.8; }
+.placeholder.p-sport::before { content: "#"; opacity: 0.8; }
+.placeholder.p-team::before { content: "#"; opacity: 0.7; }
+.placeholder.p-clinic::before { content: "#"; opacity: 0.7; }
 
-/* ==========================================================
-   CARRUSEL
-   ========================================================== */
+
+
+#carousel {
+  cursor: grab;
+  user-select: none;
+}
+#carousel.is-dragging {
+  cursor: grabbing;
+}
+
+#carouselTrack {
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
 
 .carousel-slide {
   flex: 0 0 calc((100% - 1.25rem) / 2);
 }
-
 @media (min-width: 768px) {
-  .carousel-slide {
-    flex: 0 0 calc((100% - 2.5rem) / 3);
-  }
+  .carousel-slide { flex: 0 0 calc((100% - 2.5rem) / 3); }
+}
+@media (min-width: 1024px) {
+  .carousel-slide { flex: 0 0 calc((100% - 3.75rem) / 4); }
 }
 
-@media (min-width: 1024px) {
-  .carousel-slide {
-    flex: 0 0 calc((100% - 3.75rem) / 4);
-  }
+/* Barras de progreso */
+.carousel-bar {
+  height: 3px;
+  background: #E2EAF5;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.carousel-bar-fill {
+  height: 100%;
+  width: 100%;
+  background: #00AEEF;
+  border-radius: 9999px;
 }
 
 .slide-img {
@@ -305,9 +307,6 @@ body {
   background: #00AEEF;
 }
 
-/* ==========================================================
-   FORMULARIO
-   ========================================================== */
 
 .form-field {
   display: flex;
@@ -356,9 +355,6 @@ body {
   background: #FEF2F2;
 }
 
-/* ==========================================================
-   MODAL DE ESPECIALIDADES
-   ========================================================== */
 
 .modal-overlay {
   position: fixed;
@@ -465,9 +461,6 @@ body {
   color: #5B6B85;
 }
 
-/* ==========================================================
-   ACCESIBILIDAD: respetar reduced motion
-   ========================================================== */
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

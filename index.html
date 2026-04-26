@@ -6,7 +6,7 @@
   <title>The Six — Consultorio multidisciplinario</title>
   <meta name="description" content="The Six es un consultorio multidisciplinario que reúne odontología, pediatría, kinesiología y alto rendimiento bajo un mismo techo." />
 
-  <!-- Tailwind CDN -->
+
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Tipografía: Inter -->
@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Configuración Tailwind: paleta médica -->
+
   <script>
     tailwind.config = {
       theme: {
@@ -23,7 +23,7 @@
             sans: ['Inter', 'system-ui', 'sans-serif'],
           },
           colors: {
-            // Paleta The Six
+            // Paleta que utilice atte matu je
             primary:    '#00AEEF',  // Azul cian The Six
             primaryDark:'#007BB5',  // Azul oscuro (texto/CTA)
             primarySoft:'#E0F6FF',  // Celeste muy claro (fondos)
@@ -44,9 +44,9 @@
 
 <body class="bg-white text-ink font-sans antialiased">
 
-  <!-- ============================================= -->
+
   <!-- NAVBAR FLOTANTE TIPO PILL                      -->
-  <!-- ============================================= -->
+
   <header id="navbar" class="fixed top-4 left-0 right-0 z-50 transition-all duration-300">
     <div class="max-w-6xl mx-auto px-4">
       <div class="bg-white border border-line rounded-full shadow-soft flex items-center justify-between pl-5 pr-2 py-2">
@@ -91,9 +91,9 @@
     </div>
   </header>
 
-  <!-- ============================================= -->
-  <!-- HERO                                           -->
-  <!-- ============================================= -->
+
+  <!-- HERO-->
+
   <section id="inicio" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-bg">
 
     <!-- Fondo decorativo: blob celeste sutil -->
@@ -135,49 +135,46 @@
           <div class="absolute w-[340px] h-[340px] max-w-full bg-accent/15 rounded-full -translate-x-12 translate-y-12"></div>
         </div>
 
-        <!-- Card flotante con datos -->
-        <div class="relative z-10 bg-white border border-line rounded-3xl shadow-card p-6 max-w-sm mx-auto">
-          <div class="flex items-center justify-between mb-5">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-accentSoft flex items-center justify-center">
-                <!-- ícono check -->
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-accent">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                </svg>
-              </div>
-              <div>
-                <p class="text-sm font-semibold text-ink">Turno confirmado</p>
-                <p class="text-xs text-muted">Hoy · 17:30 hs</p>
-              </div>
-            </div>
-            <span class="text-xs bg-accentSoft text-accent font-semibold px-2.5 py-1 rounded-full">Activo</span>
+        <!-- Card mapa -->
+        <div class="relative z-10 bg-white border border-line rounded-3xl shadow-card overflow-hidden max-w-sm mx-auto">
+
+          <!-- Mapa embed -->
+          <div class="relative">
+            <iframe
+              src="https://maps.google.com/maps?q=-34.8913843,-58.5675766&z=15&output=embed"
+              width="100%"
+              height="290"
+              style="border:0; display:block;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación The Six"
+            ></iframe>
+
+            <a
+              href="https://www.google.com/maps/dir//Centro+de+Salud+The+Six+(Kinesiolog%C3%ADa+-+Pediatr%C3%ADa+-+Odontolog%C3%8Da)+-+Ezeiza,+CSB,+25+de+Mayo+67,+B1806+Trist%C3%A1n+Su%C3%A1rez,+Provincia+de+Buenos+Aires/@-34.8793875,-58.5658105,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x95bcd9001502bfc7:0x1fd243163da2abd3!2m2!1d-58.5675766!2d-34.8913843?entry=ttu&g_ep=EgoyMDI2MDQyMi4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener"
+              class="absolute top-3 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-[#1f8f45] text-white pl-3 pr-4 py-2 rounded-full text-sm font-semibold shadow-lg hover:bg-[#0d2b17] transition whitespace-nowrap z-10"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 shrink-0">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+              </svg>
+              Como llegar
+            </a>
           </div>
 
-          <div class="space-y-2.5 mb-5">
-            <div class="flex items-center gap-3 p-3 rounded-xl bg-primarySoft">
-              <span class="w-7 h-7 rounded-lg bg-white flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4 text-primary"><path stroke-linecap="round" d="M12 7v10M7 12h10" stroke-linejoin="round"/></svg>
-              </span>
-              <div>
-                <p class="text-sm font-semibold text-ink leading-tight">Dra. Mariana Veronica Szyszka</p>
-                <p class="text-xs text-muted">Odontología general</p>
-              </div>
+          <!-- Pie de card: dirección -->
+          <div class="px-5 py-3.5 flex items-center gap-3 border-t border-line">
+            <span class="w-8 h-8 rounded-full bg-primarySoft flex items-center justify-center shrink-0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.8" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </span>
+            <div>
+              <p class="text-sm font-semibold text-ink leading-tight">25 de Mayo 67</p>
+              <p class="text-xs text-muted">Tristán Suárez, Buenos Aires</p>
             </div>
-
-            <div class="flex items-center gap-3 p-3 rounded-xl bg-bg border border-line">
-              <span class="w-7 h-7 rounded-lg bg-white flex items-center justify-center border border-line">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4 text-muted"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z"/></svg>
-              </span>
-              <div>
-                <p class="text-sm font-semibold text-ink leading-tight">Control de niños y recien nacidos</p>
-                <p class="text-xs text-muted">Pediatría</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-line flex items-center justify-between">
-            <p class="text-xs text-muted">Tu proxima visita nuestra prioridad </p>
-            <p class="text-sm font-bold text-primary"></p>
           </div>
         </div>
 
@@ -191,9 +188,9 @@
     </div>
   </section>
 
-  <!-- ============================================= -->
-  <!-- FRANJA DE MÉTRICAS (estilo IntraMed)           -->
-  <!-- ============================================= -->
+
+  <!-- FRANJA DE MÉTRICAS (estilo IntraMed) -->
+
   <section class="py-12 lg:py-16">
     <div class="max-w-6xl mx-auto px-6">
       <div class="bg-primarySoft rounded-3xl px-6 py-10 md:py-12 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6 text-center">
@@ -234,9 +231,9 @@
     </div>
   </section>
 
-  <!-- ============================================= -->
-  <!-- NOSOTROS                                       -->
-  <!-- ============================================= -->
+
+  <!-- NOSOTROS-->
+
   <section id="nosotros" class="py-20 lg:py-28">
     <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
@@ -290,9 +287,9 @@
     </div>
   </section>
 
-  <!-- ============================================= -->
-  <!-- ESPECIALIDADES (4 profesionales)               -->
-  <!-- ============================================= -->
+
+  <!-- ESPECIALIDADES (4 profesionales) -->
+
   <section id="especialidades" class="py-20 lg:py-28 bg-bg">
     <div class="max-w-6xl mx-auto px-6">
 
@@ -323,7 +320,7 @@
           <div class="prof-body">
             <h3 class="prof-name">Dra. Mariana Veronica Szyszka</h3>
             <p class="prof-role">Odontología general y estética</p>
-            <p class="prof-desc">Más de 8 años atendiendo a familias enteras. Especializada en odontología preventiva y tratamientos sin dolor.</p>
+            <p class="prof-desc">Más de 20 años atendiendo a familias enteras. Especializada en odontología preventiva y tratamientos sin dolor.</p>
             <a href="https://wa.me/5491136373969?text=Hola%20Mariana%2C%20me%20gustaría%20reservar%20un%20turno%20de%20odontología" target="_blank" rel="noopener" class="prof-btn">
               <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
               Reservar por WhatsApp
@@ -356,7 +353,7 @@
           <div class="prof-image">
             <img src="IMG/Kinesiologia/Profesion_2.jpg" alt="Lic. Roberto Mario Romero" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder', 'p-kine');" />
             <span class="prof-tag">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 11V7a3 3 0 016 0v4M5 11h14l-1 9H6l-1-9z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 013 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/></svg>
               Kinesiología
             </span>
           </div>
@@ -395,13 +392,13 @@
     </div>
   </section>
 
-  <!-- ============================================= -->
-  <!-- CARRUSEL DE EQUIPO                             -->
-  <!-- ============================================= -->
+
+  <!-- CARRUSEL DE EQUIPO -->
+
   <section id="equipo" class="py-20 lg:py-28">
     <div class="max-w-6xl mx-auto px-6">
 
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-6">
         <div class="max-w-xl">
           <span class="inline-flex items-center gap-2 bg-accentSoft text-accent px-3 py-1.5 rounded-full text-xs font-semibold mb-5">
             Nuestro equipo
@@ -410,7 +407,6 @@
             Las caras detrás de The Six
           </h2>
         </div>
-
         <div class="flex gap-2">
           <button id="prevBtn" aria-label="Anterior" class="carousel-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
@@ -421,6 +417,12 @@
         </div>
       </div>
 
+      <!-- Barra de progreso superior -->
+      <div id="carouselTopBar" class="carousel-bar mb-4">
+        <div class="carousel-bar-fill"></div>
+      </div>
+
+      <!-- Slider del equipo -->
       <div id="carousel" class="overflow-hidden">
         <div id="carouselTrack" class="flex gap-5">
 
@@ -454,27 +456,21 @@
             <p class="slide-role">Alto rendimiento</p>
           </div>
 
-          <!--<div class="carousel-slide">
-            <div class="slide-img placeholder p-clinic"></div>
-            <p class="slide-name">Espacios de The Six</p>
-            <p class="slide-role">Consultorios y salas</p>
-          </div>
-          /<div class="carousel-slide">
-            <div class="slide-img placeholder p-clinic"></div>
-            <p class="slide-name">Espacios de The Six</p>
-            <p class="slide-role">Consultorios y salas</p>
-          </div>-->
-
         </div>
       </div>
 
-      <div id="carouselDots" class="flex gap-2 justify-center mt-8"></div>
+      <!-- Barra de progreso inferior -->
+      <div id="carouselBottomBar" class="carousel-bar mt-4">
+        <div class="carousel-bar-fill"></div>
+      </div>
+
+      <div id="carouselDots" class="flex gap-2 justify-center mt-6"></div>
     </div>
   </section>
 
-  <!-- ============================================= -->
+
   <!-- FORMULARIO DE CONTACTO                         -->
-  <!-- ============================================= -->
+
   <section id="contacto" class="py-20 lg:py-28 bg-bg">
     <div class="max-w-6xl mx-auto px-6">
 
@@ -532,18 +528,15 @@
               Enviar consulta
             </button>
 
-            <p id="formMsg" class="text-sm text-center text-accent font-medium hidden">
-              ¡Gracias! Recibimos tu consulta y te respondemos a la brevedad.
-            </p>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================= -->
-  <!-- FOOTER                                         -->
-  <!-- ============================================= -->
+
+  <!-- FOOTER-->
+
   <footer class="bg-white border-t border-line py-12">
     <div class="max-w-6xl mx-auto px-6">
 
@@ -586,9 +579,9 @@
     </div>
   </footer>
 
-  <!-- ============================================= -->
+
   <!-- MODAL: ELEGIR ESPECIALIDAD                     -->
-  <!-- ============================================= -->
+
   <div id="specialtyModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-box">
       <button id="modalClose" class="modal-close" aria-label="Cerrar">

@@ -1,6 +1,4 @@
-/* ==========================================================
-   The Six — Interacciones del sitio
-   ========================================================== */
+
 
 (function () {
   'use strict';
@@ -11,13 +9,13 @@
     setupNavbarScroll();
     setupMobileMenu();
     setupScrollReveal();
+    setupScrollSpy();
     setupCarousel();
     setupContactForm();
   }
 
-  /* ----------------------------------------------------------
-     1. Navbar: agrega sombra al hacer scroll
-     ---------------------------------------------------------- */
+  
+     //Navbar: agrega sombra al hacer scroll
   function setupNavbarScroll() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
@@ -30,9 +28,33 @@
     onScroll();
   }
 
-  /* ----------------------------------------------------------
-     2. Menú mobile: toggle del hamburguesa
-     ---------------------------------------------------------- */
+  // marca el link activo según la sección visible
+     
+  function setupScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+    if (!sections.length || !navLinks.length) return;
+
+    function setActive(id) {
+      navLinks.forEach(link => {
+        const isActive = link.getAttribute('href') === `#${id}`;
+        link.classList.toggle('nav-active', isActive);
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, {
+      rootMargin: '-40% 0px -55% 0px',
+      threshold: 0,
+    });
+
+    sections.forEach(s => observer.observe(s));
+  }
+
+  // menu hamburguesa
   function setupMobileMenu() {
     const btn = document.getElementById('menuBtn');
     const menu = document.getElementById('mobileMenu');
@@ -46,10 +68,7 @@
     });
   }
 
-  /* ----------------------------------------------------------
-     3. Animación de revelado al hacer scroll
-        IntersectionObserver para mejor performance
-     ---------------------------------------------------------- */
+// scroll
   function setupScrollReveal() {
     const targets = document.querySelectorAll('.reveal');
     if (!targets.length) return;
@@ -74,90 +93,79 @@
     targets.forEach(el => observer.observe(el));
   }
 
-  /* ----------------------------------------------------------
-     4. Carrusel infinito del equipo
-        Técnica: clones al inicio y al final del track.
-        - Al wrappear forward: anima al bloque de trailing clones
-          (idéntico visualmente a pos=0), luego teleporta sin
-          animación a la posición real.
-        - Al wrappear backward: ídem con leading clones → maxPos.
-     ---------------------------------------------------------- */
+  /* -- Carrusel infinito del equipo -- */
   function setupCarousel() {
-    const track = document.getElementById('carouselTrack');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+    const track         = document.getElementById('carouselTrack');
+    const prevBtn       = document.getElementById('prevBtn');
+    const nextBtn       = document.getElementById('nextBtn');
     const dotsContainer = document.getElementById('carouselDots');
+    const topBar        = document.getElementById('carouselTopBar');
+    const bottomBar     = document.getElementById('carouselBottomBar');
     if (!track || !prevBtn || !nextBtn) return;
 
-    const GAP = 20;
-    const SLIDE_DUR = 480;
-    const WRAP_DUR  = 600;
+    const orig     = Array.from(track.children);
+    const N        = orig.length;
+    const carousel = track.parentElement;
+    let domPos     = N; // posición actual en DOM; N..2N-1 = slides reales
+    let correcting = false;
 
-    let pos = 0;
-    let busy = false;
-    let autoplayId;
-
-    // Guardamos los slides originales antes de clonar
-    const origSlides = Array.from(track.children);
-    const N = origSlides.length;
-
-    function vis() {
-      const w = window.innerWidth;
-      return w >= 1024 ? 4 : w >= 768 ? 3 : 2;
+    function slideW() {
+      const s = track.firstElementChild;
+      return s ? s.getBoundingClientRect().width + 20 : 0;
     }
-    function maxPos() { return Math.max(0, N - vis()); }
+    function realIdx(dp) { return ((dp - N) % N + N) % N; }
 
-    // Reconstruye el DOM con v clones delante y v clones detrás
+    // DOM layout: [N pre-clones] [N slides reales] [N post-clones]
     function buildDOM() {
-      while (track.firstChild) track.removeChild(track.firstChild);
-      const v = vis();
-      for (let i = N - v; i < N; i++) {               // leading clones
-        const c = origSlides[i].cloneNode(true);
+      Array.from(track.children).forEach(c => { if (c.dataset.clone) c.remove(); });
+      orig.forEach(s => {
+        const c = s.cloneNode(true);
+        c.dataset.clone = '1';
+        c.setAttribute('aria-hidden', 'true');
+        track.insertBefore(c, orig[0]);
+      });
+      orig.forEach(s => {
+        const c = s.cloneNode(true);
+        c.dataset.clone = '1';
         c.setAttribute('aria-hidden', 'true');
         track.appendChild(c);
+      });
+    }
+
+    function moveTo(dp, instant) {
+      if (instant) { track.style.transition = 'none'; void track.offsetWidth; }
+      else           track.style.transition = '';
+      track.style.transform = `translateX(-${slideW() * dp}px)`;
+    }
+
+    track.addEventListener('transitionend', () => {
+      if (correcting) return;
+      if (domPos < N || domPos >= 2 * N) {
+        correcting = true;
+        domPos = N + realIdx(domPos);
+        moveTo(domPos, true);
+        correcting = false;
       }
-      origSlides.forEach(s => track.appendChild(s.cloneNode(true))); // reales
-      for (let i = 0; i < v; i++) {                   // trailing clones
-        const c = origSlides[i].cloneNode(true);
-        c.setAttribute('aria-hidden', 'true');
-        track.appendChild(c);
-      }
+    });
+
+    function goTo(dp) {
+      domPos = dp;
+      moveTo(dp, false);
+      syncDots();
+      resetBarsAnimation();
     }
 
-    function sw() {
-      const child = track.firstElementChild;
-      return child ? child.getBoundingClientRect().width + GAP : 0;
-    }
-
-    // offsetFor(p) → p=0 es el primer slide real (saltando los v leading clones)
-    function offsetFor(p) { return sw() * (p + vis()); }
-
-    function setInstant(p) {
-      track.style.transition = 'none';
-      track.style.transform  = `translateX(-${offsetFor(p)}px)`;
-    }
-
-    function animateTo(offset, dur, onDone) {
-      track.style.transition = `transform ${dur}ms cubic-bezier(0.25,0.46,0.45,0.94)`;
-      track.style.transform  = `translateX(-${offset}px)`;
-      setTimeout(onDone, dur + 20);
-    }
+    function next() { goTo(domPos + 1); }
+    function prev() { goTo(domPos - 1); }
 
     function buildDots() {
       if (!dotsContainer) return;
       dotsContainer.innerHTML = '';
-      for (let i = 0; i <= maxPos(); i++) {
+      for (let i = 0; i < N; i++) {
         const d = document.createElement('button');
         d.className = 'carousel-dot';
         d.setAttribute('aria-label', `Ir al slide ${i + 1}`);
-        d.addEventListener('click', () => {
-          if (busy) return;
-          busy = true;
-          pos = i;
-          animateTo(offsetFor(pos), SLIDE_DUR, () => { busy = false; });
-          syncDots();
-          startAutoplay();
-        });
+        d.addEventListener('click', () => goTo(N + i));
         dotsContainer.appendChild(d);
       }
       syncDots();
@@ -165,95 +173,82 @@
 
     function syncDots() {
       if (!dotsContainer) return;
-      [...dotsContainer.children].forEach((d, i) => d.classList.toggle('active', i === pos));
+      const ri = realIdx(domPos);
+      [...dotsContainer.children].forEach((d, i) => d.classList.toggle('active', i === ri));
     }
 
-    function next() {
-      if (busy) return;
-      busy = true;
-      const v = vis(), max = maxPos();
-
-      if (pos < max) {
-        pos++;
-        animateTo(offsetFor(pos), SLIDE_DUR, () => { busy = false; });
-        syncDots();
-      } else {
-        // Anima hasta los trailing clones (visualmente = pos 0), luego teleporta
-        const wrapOffset = sw() * (N + v + v); // offsetFor(N) = (N + v) * sw → trailing block
-        pos = 0;
-        syncDots();
-        animateTo(wrapOffset, WRAP_DUR, () => {
-          setInstant(0);
-          busy = false;
-        });
-      }
+    function startBarsAnimation() {
+      [topBar, bottomBar].forEach(bar => {
+        if (!bar) return;
+        const fill = bar.querySelector('.carousel-bar-fill');
+        if (!fill) return;
+        fill.style.transition = 'width 10s linear';
+        fill.style.width = '0';
+      });
     }
 
-    function prev() {
-      if (busy) return;
-      busy = true;
-
-      if (pos > 0) {
-        pos--;
-        animateTo(offsetFor(pos), SLIDE_DUR, () => { busy = false; });
-        syncDots();
-      } else {
-        // Anima hasta los leading clones (visualmente = maxPos), luego teleporta
-        // offsetFor(-v) = sw() * (-v + v) = 0  → inicio del track = leading clones block
-        pos = maxPos();
-        syncDots();
-        animateTo(0, WRAP_DUR, () => {
-          setInstant(maxPos());
-          busy = false;
-        });
-      }
+    function resetBarsAnimation() {
+      [topBar, bottomBar].forEach(bar => {
+        if (!bar) return;
+        const fill = bar.querySelector('.carousel-bar-fill');
+        if (!fill) return;
+        fill.style.transition = 'none';
+        fill.style.width = '100%';
+        void fill.offsetWidth;
+      });
+      setTimeout(startBarsAnimation, 50);
     }
 
-    function startAutoplay() {
-      stopAutoplay();
-      autoplayId = setInterval(next, 4000);
-    }
-    function stopAutoplay() { clearInterval(autoplayId); }
+    // Drag / swipe
+    let startX = 0, dragging = false, dragDelta = 0;
 
-    function init() {
-      pos  = 0;
-      busy = false;
-      buildDOM();
-      buildDots();
-      setInstant(0);
-      startAutoplay();
+    function onStart(x) {
+      startX = x; dragging = true; dragDelta = 0;
+      track.style.transition = 'none';
+      carousel.classList.add('is-dragging');
+    }
+    function onMove(x) {
+      if (!dragging) return;
+      dragDelta = x - startX;
+      track.style.transform = `translateX(${-(slideW() * domPos) + dragDelta}px)`;
+    }
+    function onEnd() {
+      if (!dragging) return;
+      dragging = false;
+      carousel.classList.remove('is-dragging');
+      const sw = slideW();
+      if (sw) goTo(Math.round(domPos - dragDelta / sw));
     }
 
-    nextBtn.addEventListener('click', () => { next(); startAutoplay(); });
-    prevBtn.addEventListener('click', () => { prev(); startAutoplay(); });
-    track.parentElement.addEventListener('mouseenter', stopAutoplay);
-    track.parentElement.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('touchstart', e => onStart(e.touches[0].clientX),   { passive: true });
+    carousel.addEventListener('touchmove',  e => onMove(e.touches[0].clientX),    { passive: true });
+    carousel.addEventListener('touchend',   () => onEnd());
+    carousel.addEventListener('mousedown',  e => { e.preventDefault(); onStart(e.clientX); });
+    window.addEventListener('mousemove',    e => onMove(e.clientX));
+    window.addEventListener('mouseup',      () => onEnd());
+
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
 
     let rTimer;
     window.addEventListener('resize', () => {
       clearTimeout(rTimer);
-      rTimer = setTimeout(init, 150);
+      rTimer = setTimeout(() => {
+        const ri = realIdx(domPos);
+        buildDOM();
+        domPos = N + ri;
+        buildDots();
+        moveTo(domPos, true);
+      }, 150);
     });
 
-    let tx = 0;
-    track.addEventListener('touchstart', e => {
-      tx = e.touches[0].clientX;
-      stopAutoplay();
-    }, { passive: true });
-    track.addEventListener('touchend', e => {
-      const diff = tx - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
-      startAutoplay();
-    });
-
-    init();
+    buildDOM();
+    buildDots();
+    moveTo(domPos, true);
+    resetBarsAnimation();
   }
 
-  /* ----------------------------------------------------------
-     5. Formulario + modal de especialidades
-        Al enviar: valida → abre popup → usuario elige
-        especialidad → abre WhatsApp del profesional
-     ---------------------------------------------------------- */
+  /* --5. Formulario + modal de especialidades-- */
   function setupContactForm() {
     const form    = document.getElementById('contactForm');
     const modal   = document.getElementById('specialtyModal');
@@ -265,7 +260,7 @@
       {
         nombre: 'Odontología',
         prof:   'Dra. Szyszka',
-        wa:     '5491100000001', // ← reemplazar con número real
+        wa:     '5491136373969', 
         icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
                  <path stroke-linecap="round" d="M12 2a5 5 0 00-5 5c0 1.5.5 2.5 1 4 .5 1.5 1 4 1 7 0 2 1 4 2 4s1-2 1-4 1-2 1 0 0 4 1 4 2-2 2-4c0-3 .5-5.5 1-7 .5-1.5 1-2.5 1-4a5 5 0 00-5-5z"/>
                </svg>`,
@@ -273,7 +268,7 @@
       {
         nombre: 'Pediatría',
         prof:   'Dra. Romero',
-        wa:     '5491100000002', // ← reemplazar con número real
+        wa:     '5491136197463', 
         icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z"/>
                </svg>`,
@@ -281,15 +276,15 @@
       {
         nombre: 'Kinesiología',
         prof:   'Lic. R. Romero',
-        wa:     '5491100000003', // ← reemplazar con número real
+        wa:     '5491159822880', 
         icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
-                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 11V7a3 3 0 016 0v4M5 11h14l-1 9H6l-1-9z"/>
+                 <path stroke-linecap="round" stroke-linejoin="round" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 013 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"/>
                </svg>`,
       },
       {
         nombre: 'Alto Rendimiento',
         prof:   'Lic. N. Romero',
-        wa:     '5491100000004', // ← reemplazar con número real
+        wa:     '5491135683328', 
         icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-5 h-5">
                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/>
                </svg>`,
@@ -346,14 +341,18 @@
       });
       if (!isValid) return;
 
-      const nombre   = form.nombre.value.trim();
-      const apellido = form.apellido.value.trim();
-      const telefono = form.telefono.value.trim();
-      const consulta = form.consulta.value.trim();
+      const nombre   = form.nombre   ? form.nombre.value.trim()   : '';
+      const apellido = form.apellido ? form.apellido.value.trim() : '';
+      const consulta = form.consulta ? form.consulta.value.trim() : '';
 
-      const waText = encodeURIComponent(
-        `Hola! Me comunico desde la web de The Six.\n\nNombre: ${nombre} ${apellido}\nTeléfono: ${telefono}\n\nConsulta: ${consulta}`
-      );
+      const lineas = [
+        `Hola! Me comunico desde la web de The Six.`,
+        ``,
+        nombre || apellido ? `Nombre: ${nombre} ${apellido}`.trim() : null,
+        consulta           ? `\nConsulta: ${consulta}`            : null,
+      ].filter(l => l !== null).join('\n');
+
+      const waText = encodeURIComponent(lineas);
 
       openModal(waText);
     });
