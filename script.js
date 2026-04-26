@@ -14,8 +14,7 @@
     setupContactForm();
   }
 
-  
-     //Navbar: agrega sombra al hacer scroll
+ 
   function setupNavbarScroll() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
@@ -28,7 +27,7 @@
     onScroll();
   }
 
-  // marca el link activo según la sección visible
+ 
      
   function setupScrollSpy() {
     const sections = document.querySelectorAll('section[id]');
@@ -54,7 +53,7 @@
     sections.forEach(s => observer.observe(s));
   }
 
-  // menu hamburguesa
+
   function setupMobileMenu() {
     const btn = document.getElementById('menuBtn');
     const menu = document.getElementById('mobileMenu');
@@ -62,7 +61,6 @@
 
     btn.addEventListener('click', () => menu.classList.toggle('hidden'));
 
-    // Cerrar el menú al tocar cualquier link
     menu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => menu.classList.add('hidden'));
     });
@@ -98,15 +96,12 @@
     const track         = document.getElementById('carouselTrack');
     const prevBtn       = document.getElementById('prevBtn');
     const nextBtn       = document.getElementById('nextBtn');
-    const dotsContainer = document.getElementById('carouselDots');
-    const topBar        = document.getElementById('carouselTopBar');
-    const bottomBar     = document.getElementById('carouselBottomBar');
-    if (!track || !prevBtn || !nextBtn) return;
+if (!track || !prevBtn || !nextBtn) return;
 
     const orig     = Array.from(track.children);
     const N        = orig.length;
     const carousel = track.parentElement;
-    let domPos     = N; // posición actual en DOM; N..2N-1 = slides reales
+    let domPos     = N; 
     let correcting = false;
 
     function slideW() {
@@ -115,7 +110,6 @@
     }
     function realIdx(dp) { return ((dp - N) % N + N) % N; }
 
-    // DOM layout: [N pre-clones] [N slides reales] [N post-clones]
     function buildDOM() {
       Array.from(track.children).forEach(c => { if (c.dataset.clone) c.remove(); });
       orig.forEach(s => {
@@ -151,55 +145,12 @@
     function goTo(dp) {
       domPos = dp;
       moveTo(dp, false);
-      syncDots();
-      resetBarsAnimation();
     }
 
     function next() { goTo(domPos + 1); }
     function prev() { goTo(domPos - 1); }
 
-    function buildDots() {
-      if (!dotsContainer) return;
-      dotsContainer.innerHTML = '';
-      for (let i = 0; i < N; i++) {
-        const d = document.createElement('button');
-        d.className = 'carousel-dot';
-        d.setAttribute('aria-label', `Ir al slide ${i + 1}`);
-        d.addEventListener('click', () => goTo(N + i));
-        dotsContainer.appendChild(d);
-      }
-      syncDots();
-    }
 
-    function syncDots() {
-      if (!dotsContainer) return;
-      const ri = realIdx(domPos);
-      [...dotsContainer.children].forEach((d, i) => d.classList.toggle('active', i === ri));
-    }
-
-    function startBarsAnimation() {
-      [topBar, bottomBar].forEach(bar => {
-        if (!bar) return;
-        const fill = bar.querySelector('.carousel-bar-fill');
-        if (!fill) return;
-        fill.style.transition = 'width 10s linear';
-        fill.style.width = '0';
-      });
-    }
-
-    function resetBarsAnimation() {
-      [topBar, bottomBar].forEach(bar => {
-        if (!bar) return;
-        const fill = bar.querySelector('.carousel-bar-fill');
-        if (!fill) return;
-        fill.style.transition = 'none';
-        fill.style.width = '100%';
-        void fill.offsetWidth;
-      });
-      setTimeout(startBarsAnimation, 50);
-    }
-
-    // Drag / swipe
     let startX = 0, dragging = false, dragDelta = 0;
 
     function onStart(x) {
@@ -237,18 +188,15 @@
         const ri = realIdx(domPos);
         buildDOM();
         domPos = N + ri;
-        buildDots();
         moveTo(domPos, true);
       }, 150);
     });
 
     buildDOM();
-    buildDots();
     moveTo(domPos, true);
-    resetBarsAnimation();
   }
 
-  /* --5. Formulario + modal de especialidades-- */
+  
   function setupContactForm() {
     const form    = document.getElementById('contactForm');
     const modal   = document.getElementById('specialtyModal');
@@ -293,7 +241,6 @@
 
     let pendingMessage = '';
 
-    // Construye los botones del modal
     ESPECIALIDADES.forEach(esp => {
       const btn = document.createElement('button');
       btn.className = 'specialty-btn';
@@ -325,7 +272,7 @@
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-    // Submit del formulario
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 

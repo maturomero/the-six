@@ -32,7 +32,7 @@ body {
   box-shadow: 0 4px 24px rgba(14, 27, 51, 0.08);
 }
 
-/* Link activo en navbar (scrollspy) */
+
 header nav a.nav-active {
   color: #00AEEF;
   font-weight: 600;
@@ -236,19 +236,6 @@ header nav a.nav-active {
   .carousel-slide { flex: 0 0 calc((100% - 3.75rem) / 4); }
 }
 
-/* Barras de progreso */
-.carousel-bar {
-  height: 3px;
-  background: #E2EAF5;
-  border-radius: 9999px;
-  overflow: hidden;
-}
-.carousel-bar-fill {
-  height: 100%;
-  width: 100%;
-  background: #00AEEF;
-  border-radius: 9999px;
-}
 
 .slide-img {
   display: block;
@@ -292,20 +279,6 @@ header nav a.nav-active {
   color: #ffffff;
 }
 
-.carousel-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 9999px;
-  background: #E2EAF5;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: 0;
-  padding: 0;
-}
-.carousel-dot.active {
-  width: 24px;
-  background: #00AEEF;
-}
 
 
 .form-field {

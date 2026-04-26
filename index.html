@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="antialiased scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,18 +44,18 @@
 <body class="bg-white text-ink font-sans antialiased">
 
 
-  <!-- NAVBAR FLOTANTE TIPO PILL                      -->
+
 
   <header id="navbar" class="fixed top-4 left-0 right-0 z-50 transition-all duration-300">
     <div class="max-w-6xl mx-auto px-4">
       <div class="bg-white border border-line rounded-full shadow-soft flex items-center justify-between pl-5 pr-2 py-2">
 
-        <!-- Logo -->
+        
         <a href="#inicio" class="flex items-center">
           <img src="IMG/Logo(1).png" alt="The Six Consultorios Médicos" class="h-12 w-auto" />
         </a>
 
-        <!-- Navegación desktop -->
+        
         <nav class="hidden lg:flex items-center gap-8 text-sm text-muted font-medium">
           <a href="#nosotros" class="hover:text-primary transition">Nosotros</a>
           <a href="#especialidades" class="hover:text-primary transition">Especialidades</a>
@@ -64,7 +63,7 @@
           <a href="#contacto" class="hover:text-primary transition">Contacto</a>
         </nav>
 
-        <!-- CTA + menú mobile -->
+    
         <div class="flex items-center gap-2">
           <a href="#contacto" class="hidden md:inline-flex items-center bg-primary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primaryDark transition">
             Consulta tu turno
@@ -76,7 +75,7 @@
         </div>
       </div>
 
-      <!-- Menú mobile -->
+   
       <div id="mobileMenu" class="hidden lg:hidden mt-2 bg-white border border-line rounded-3xl shadow-soft p-4">
         <nav class="flex flex-col text-base">
           <a href="#nosotros" class="mobile-link">Nosotros</a>
@@ -92,16 +91,16 @@
   </header>
 
 
-  <!-- HERO-->
+
 
   <section id="inicio" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-bg">
 
-    <!-- Fondo decorativo: blob celeste sutil -->
+   
     <div class="absolute -top-32 -right-32 w-[600px] h-[600px] bg-primarySoft rounded-full blur-3xl opacity-60 -z-0"></div>
 
     <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
 
-      <!-- Texto principal -->
+      
       <div class="reveal">
         <span class="inline-flex items-center gap-2 bg-primarySoft text-primary px-3 py-1.5 rounded-full text-xs font-semibold mb-6">
           <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
@@ -126,19 +125,19 @@
         </div>
       </div>
 
-      <!-- Visual: composición tipo "card médica" sobre blob -->
+  
       <div class="relative reveal" style="animation-delay: 0.15s">
 
-        <!-- Blob azul de fondo -->
+  
         <div class="absolute inset-0 flex items-center justify-center">
           <div class="w-[420px] h-[420px] max-w-full bg-primary/10 rounded-full"></div>
           <div class="absolute w-[340px] h-[340px] max-w-full bg-accent/15 rounded-full -translate-x-12 translate-y-12"></div>
         </div>
 
-        <!-- Card mapa -->
+    
         <div class="relative z-10 bg-white border border-line rounded-3xl shadow-card overflow-hidden max-w-sm mx-auto">
 
-          <!-- Mapa embed -->
+      
           <div class="relative">
             <iframe
               src="https://maps.google.com/maps?q=-34.8913843,-58.5675766&z=15&output=embed"
@@ -164,7 +163,7 @@
             </a>
           </div>
 
-          <!-- Pie de card: dirección -->
+       
           <div class="px-5 py-3.5 flex items-center gap-3 border-t border-line">
             <span class="w-8 h-8 rounded-full bg-primarySoft flex items-center justify-center shrink-0">
               <svg viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.8" class="w-4 h-4">
@@ -178,7 +177,7 @@
           </div>
         </div>
 
-        <!-- Pill flotante decorativa -->
+    
         <div class="absolute -top-2 right-4 lg:-right-2 bg-white border border-line rounded-full px-4 py-2 shadow-card flex items-center gap-2 z-20">
           <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
           <span class="text-xs font-semibold text-ink">Atención hoy</span>
@@ -189,7 +188,6 @@
   </section>
 
 
-  <!-- FRANJA DE MÉTRICAS (estilo IntraMed) -->
 
   <section class="py-12 lg:py-16">
     <div class="max-w-6xl mx-auto px-6">
@@ -288,7 +286,7 @@
   </section>
 
 
-  <!-- ESPECIALIDADES (4 profesionales) -->
+  <!-- ESPECIALIDADES  -->
 
   <section id="especialidades" class="py-20 lg:py-28 bg-bg">
     <div class="max-w-6xl mx-auto px-6">
@@ -305,10 +303,9 @@
         </p>
       </div>
 
-      <!-- Grid 2x2 -->
       <div class="grid md:grid-cols-2 gap-5">
 
-        <!-- Odontología -->
+  
         <article class="prof-card">
           <div class="prof-image">
             <img src="IMG/Odontologia/Odontologia_profesion.jpg" alt="Dra. Mariana Veronica Szyszka" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder', 'p-tooth');" />
@@ -328,7 +325,7 @@
           </div>
         </article>
 
-        <!-- Pediatría -->
+     
         <article class="prof-card">
           <div class="prof-image">
             <img src="IMG/Pediatria/profesion.jpg" alt="Dr. Agustina Mariana Romero" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder', 'p-pediatrics');" />
@@ -348,7 +345,7 @@
           </div>
         </article>
 
-        <!-- Kinesiología -->
+     
         <article class="prof-card">
           <div class="prof-image">
             <img src="IMG/Kinesiologia/Profesion_2.jpg" alt="Lic. Roberto Mario Romero" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder', 'p-kine');" />
@@ -368,7 +365,7 @@
           </div>
         </article>
 
-        <!-- Alto Rendimiento -->
+  
         <article class="prof-card">
           <div class="prof-image">
             <img src="IMG/PF/Profesion.jpg" alt="Lic. Roberto Nicolas Romero" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder', 'p-sport');" />
@@ -417,12 +414,7 @@
         </div>
       </div>
 
-      <!-- Barra de progreso superior -->
-      <div id="carouselTopBar" class="carousel-bar mb-4">
-        <div class="carousel-bar-fill"></div>
-      </div>
 
-      <!-- Slider del equipo -->
       <div id="carousel" class="overflow-hidden">
         <div id="carouselTrack" class="flex gap-5">
 
@@ -459,24 +451,19 @@
         </div>
       </div>
 
-      <!-- Barra de progreso inferior -->
-      <div id="carouselBottomBar" class="carousel-bar mt-4">
-        <div class="carousel-bar-fill"></div>
-      </div>
 
-      <div id="carouselDots" class="flex gap-2 justify-center mt-6"></div>
     </div>
   </section>
 
 
-  <!-- FORMULARIO DE CONTACTO                         -->
+
 
   <section id="contacto" class="py-20 lg:py-28 bg-bg">
     <div class="max-w-6xl mx-auto px-6">
 
       <div class="bg-white border border-line rounded-3xl shadow-soft overflow-hidden grid lg:grid-cols-12">
 
-        <!-- Lado izquierdo: info -->
+
         <div class="lg:col-span-5 bg-primary text-white p-8 md:p-10 flex flex-col">
           <span class="inline-flex items-center gap-2 bg-white/15 text-white px-3 py-1.5 rounded-full text-xs font-semibold w-fit mb-5">
             Contacto
@@ -504,7 +491,7 @@
           </div>
         </div>
 
-        <!-- Formulario -->
+
         <div class="lg:col-span-7 p-8 md:p-10">
           <form id="contactForm" class="space-y-5" novalidate>
 
@@ -580,7 +567,6 @@
   </footer>
 
 
-  <!-- MODAL: ELEGIR ESPECIALIDAD                     -->
 
   <div id="specialtyModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-box">
