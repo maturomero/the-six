@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Six — Consultorio multidisciplinario</title>
+  <meta name="description" content="The Six es un consultorio multidisciplinario que reúne odontología, pediatría, kinesiología y alto rendimiento bajo un mismo techo." />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tipografía: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Configuración Tailwind: paleta médica -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            // Paleta The Six
+            primary:    '#00AEEF',  // Azul cian The Six
+            primaryDark:'#007BB5',  // Azul oscuro (texto/CTA)
+            primarySoft:'#E0F6FF',  // Celeste muy claro (fondos)
+            accent:     '#34C7A8',  // Verde menta (acentos)
+            accentSoft: '#E6F8F3',  // Verde muy claro
+            ink:        '#0E1B33',  // Texto principal
+            muted:      '#5B6B85',  // Texto secundario
+            line:       '#E2EAF5',  // Bordes sutiles
+            bg:         '#F7FAFE',  // Fondo general
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="bg-white text-ink font-sans antialiased">
+
+  <!-- ============================================= -->
+  <!-- NAVBAR FLOTANTE TIPO PILL                      -->
+  <!-- ============================================= -->
+  <header id="navbar" class="fixed top-4 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="bg-white border border-line rounded-full shadow-soft flex items-center justify-between pl-5 pr-2 py-2">
+
+        <!-- Logo -->
+        <a href="#inicio" class="flex items-center">
+          <img src="IMG/Logo(1).png" alt="The Six Consultorios Médicos" class="h-12 w-auto" />
+        </a>
+
+        <!-- Navegación desktop -->
+        <nav class="hidden lg:flex items-center gap-8 text-sm text-muted font-medium">
+          <a href="#nosotros" class="hover:text-primary transition">Nosotros</a>
+          <a href="#especialidades" class="hover:text-primary transition">Especialidades</a>
+          <a href="#equipo" class="hover:text-primary transition">Equipo</a>
+          <a href="#contacto" class="hover:text-primary transition">Contacto</a>
+        </nav>
+
+        <!-- CTA + menú mobile -->
+        <div class="flex items-center gap-2">
+          <a href="#contacto" class="hidden md:inline-flex items-center bg-primary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primaryDark transition">
+            Consulta tu turno
+          </a>
+          <button id="menuBtn" aria-label="Abrir menú" class="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-full hover:bg-primarySoft transition">
+            <span class="block w-5 h-0.5 bg-ink rounded-full"></span>
+            <span class="block w-5 h-0.5 bg-ink rounded-full"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menú mobile -->
+      <div id="mobileMenu" class="hidden lg:hidden mt-2 bg-white border border-line rounded-3xl shadow-soft p-4">
+        <nav class="flex flex-col text-base">
+          <a href="#nosotros" class="mobile-link">Nosotros</a>
+          <a href="#especialidades" class="mobile-link">Especialidades</a>
+          <a href="#equipo" class="mobile-link">Equipo</a>
+          <a href="#contacto" class="mobile-link">Contacto</a>
+          <a href="#contacto" class="mt-3 bg-primary text-white px-5 py-3 rounded-full text-sm font-medium text-center hover:bg-primaryDark transition">
+            Consulta tu turno
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================= -->
+  <!-- HERO                                           -->
+  <!-- ============================================= -->
+  <section id="inicio" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-bg">
+
+    <!-- Fondo decorativo: blob celeste sutil -->
+    <div class="absolute -top-32 -right-32 w-[600px] h-[600px] bg-primarySoft rounded-full blur-3xl opacity-60 -z-0"></div>
+
+    <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
+
+      <!-- Texto principal -->
+      <div class="reveal">
+        <span class="inline-flex items-center gap-2 bg-primarySoft text-primary px-3 py-1.5 rounded-full text-xs font-semibold mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          Consultorio multidisciplinario
+        </span>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-ink leading-[1.1] tracking-tight mb-6">
+          Tu salud, en <span class="text-primary">manos expertas</span>.
+        </h1>
+
+        <p class="text-lg text-muted leading-relaxed max-w-xl mb-8">
+          Reunimos cuatro especialidades — odontología, pediatría, kinesiología y alto rendimiento — bajo un mismo techo, para acompañarte en cada etapa con una atención cercana y profesional.
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="#contacto" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-primaryDark transition shadow-button">
+            Consulta tu turno
+          </a>
+          <a href="#especialidades" class="inline-flex items-center gap-2 bg-white border border-line text-ink px-6 py-3.5 rounded-full text-sm font-semibold hover:border-primary hover:text-primary transition">
+            Ver especialidades
+          </a>
+        </div>
+      </div>
+
+      <!-- Visual: composición tipo "card médica" sobre blob -->
+      <div class="relative reveal" style="animation-delay: 0.15s">
+
+        <!-- Blob azul de fondo -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-[420px] h-[420px] max-w-full bg-primary/10 rounded-full"></div>
+          <div class="absolute w-[340px] h-[340px] max-w-full bg-accent/15 rounded-full -translate-x-12 translate-y-12"></div>
+        </div>
+
+        <!-- Card flotante con datos -->
+        <div class="relative z-10 bg-white border border-line rounded-3xl shadow-card p-6 max-w-sm mx-auto">
+          <div class="flex items-center justify-between mb-5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-accentSoft flex items-center justify-center">
+                <!-- ícono check -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 text-accent">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-ink">Turno confirmado</p>
+                <p class="text-xs text-muted">Hoy · 17:30 hs</p>
+              </div>
+            </div>
+            <span class="text-xs bg-accentSoft text-accent font-semibold px-2.5 py-1 rounded-full">Activo</span>
+          </div>
+
+          <div class="space-y-2.5 mb-5">
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-primarySoft">
+              <span class="w-7 h-7 rounded-lg bg-white flex items-center justify-center">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4 text-primary"><path stroke-linecap="round" d="M12 7v10M7 12h10" stroke-linejoin="round"/></svg>
+              </span>
+              <div>
+                <p class="text-sm font-semibold text-ink leading-tight">Dra. Mariana Agustina Romero</p>
+                <p class="text-xs text-muted">Odontología general</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 p-3 rounded-xl bg-bg border border-line">
+              <span class="w-7 h-7 rounded-lg bg-white flex items-center justify-center border border-line">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4 text-muted"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z"/></svg>
+              </span>
+              <div>
+                <p class="text-sm font-semibold text-ink leading-tight">Control de niños y recien nacidos</p>
+                <p class="text-xs text-muted">Pediatría</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-line flex items-center justify-between">
+            <p class="text-xs text-muted">Tu proxima visita nuestra prioridad </p>
+            <p class="text-sm font-bold text-primary"></p>
+          </div>
+        </div>
+
+        <!-- Pill flotante decorativa -->
+        <div class="absolute -top-2 right-4 lg:-right-2 bg-white border border-line rounded-full px-4 py-2 shadow-card flex items-center gap-2 z-20">
+          <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+          <span class="text-xs font-semibold text-ink">Atención hoy</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- FRANJA DE MÉTRICAS (estilo IntraMed)           -->
+  <!-- ============================================= -->
+  <section class="py-12 lg:py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="bg-primarySoft rounded-3xl px-6 py-10 md:py-12 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6 text-center">
+
+        <div>
+          <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-white flex items-center justify-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-6 h-6 text-primary"><circle cx="12" cy="8" r="4" stroke-linecap="round"/><path stroke-linecap="round" stroke-linejoin="round" d="M4 21v-1a6 6 0 016-6h4a6 6 0 016 6v1"/></svg>
+          </div>
+          <p class="text-3xl md:text-4xl font-bold text-primaryDark">+1500</p>
+          <p class="text-sm text-muted mt-1">Pacientes activos</p>
+        </div>
+
+        <div>
+          <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-white flex items-center justify-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-6 h-6 text-primary"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/></svg>
+          </div>
+          <p class="text-3xl md:text-4xl font-bold text-primaryDark">4</p>
+          <p class="text-sm text-muted mt-1">Especialidades</p>
+        </div>
+
+        <div>
+          <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-white flex items-center justify-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-6 h-6 text-primary"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <p class="text-3xl md:text-4xl font-bold text-primaryDark">+15</p>
+          <p class="text-sm text-muted mt-1">Años de experiencia</p>
+        </div>
+
+        <div>
+          <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-white flex items-center justify-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-6 h-6 text-primary"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11c1.66 0 3-1.34 3-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zM8 13c-2.67 0-8 1.34-8 4v2h10v-2c0-1.1.5-2.05 1.3-2.7C10.6 13.49 9.32 13 8 13zm8 0c-.29 0-.62.02-.97.05.81.66 1.97 1.87 1.97 2.95v2h6v-2c0-2.66-5.33-4-7-4z"/></svg>
+          </div>
+          <p class="text-3xl md:text-4xl font-bold text-primaryDark">98%</p>
+          <p class="text-sm text-muted mt-1">Pacientes satisfechos</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- NOSOTROS                                       -->
+  <!-- ============================================= -->
+  <section id="nosotros" class="py-20 lg:py-28">
+    <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+      <div class="lg:col-span-5">
+        <span class="inline-flex items-center gap-2 bg-accentSoft text-accent px-3 py-1.5 rounded-full text-xs font-semibold mb-5">
+          Nosotros
+        </span>
+        <h2 class="text-3xl md:text-4xl font-bold text-ink leading-[1.15] mb-5">
+          Un equipo que trabaja en conjunto, por tu bienestar.
+        </h2>
+        <p class="text-muted leading-relaxed">
+          Creemos en una atención integral: que cada paciente sea evaluado, escuchado y acompañado por los profesionales indicados, sin tener que repetir su historia en cada consulta.
+        </p>
+      </div>
+
+      <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.7-2A9 9 0 1112 3a9 9 0 018.7 5z"/></svg>
+          </div>
+          <h3 class="font-semibold text-ink mb-1.5">Atención coordinada</h3>
+          <p class="text-sm text-muted leading-relaxed">Tus profesionales se hablan entre sí. Tu historia clínica viaja con vos.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 2M3 12a9 9 0 1118 0 9 9 0 01-18 0z"/></svg>
+          </div>
+          <h3 class="font-semibold text-ink mb-1.5">Turnos sin demoras</h3>
+          <p class="text-sm text-muted leading-relaxed">Reservás online y te confirmamos en menos de 24 horas. Respetamos tu tiempo.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h3 class="font-semibold text-ink mb-1.5">Trato cercano</h3>
+          <p class="text-sm text-muted leading-relaxed">Consultas con tiempo real para escuchar, explicar y resolver dudas.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z"/></svg>
+          </div>
+          <h3 class="font-semibold text-ink mb-1.5">Toda la familia</h3>
+          <p class="text-sm text-muted leading-relaxed">Cuidamos a chicos, adultos y deportistas. Una clínica para todos.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- ESPECIALIDADES (4 profesionales)               -->
+  <!-- ============================================= -->
+  <section id="especialidades" class="py-20 lg:py-28 bg-bg">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="inline-flex items-center gap-2 bg-primarySoft text-primary px-3 py-1.5 rounded-full text-xs font-semibold mb-5">
+          Especialidades
+        </span>
+        <h2 class="text-3xl md:text-4xl font-bold text-ink leading-[1.15] mb-4">
+          Nuestras especialidades
+        </h2>
+        <p class="text-muted leading-relaxed">
+          Cada especialidad cuenta con un referente con formación, experiencia y un trato humano. Reservá turno directo por WhatsApp.
+        </p>
+      </div>
+
+      <!-- Grid 2x2 -->
+      <div class="grid md:grid-cols-2 gap-5">
+
+        <!-- Odontología -->
+        <article class="prof-card">
+          <div class="prof-image">
+            <img src="IMG/Odontologia/Odontologia_profesion.jpg" alt="Dra. Mariana Veronica Szyszka" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder', 'p-tooth');" />
+            <span class="prof-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2a5 5 0 00-5 5c0 1.5.5 2.5 1 4 .5 1.5 1 4 1 7 0 2 1 4 2 4s1-2 1-4 1-2 1 0 0 4 1 4 2-2 2-4c0-3 .5-5.5 1-7 .5-1.5 1-2.5 1-4a5 5 0 00-5-5z"/></svg>
+              Odontología
+            </span>
+          </div>
+          <div class="prof-body">
+            <h3 class="prof-name">Dra. Mariana Veronica Szyszka</h3>
+            <p class="prof-role">Odontología general y estética</p>
+            <p class="prof-desc">Más de 8 años atendiendo a familias enteras. Especializada en odontología preventiva y tratamientos sin dolor.</p>
+            <a href="https://wa.me/5491136373969?text=Hola%20Lucía%2C%20me%20gustaría%20reservar%20un%20turno%20de%20odontología" target="_blank" rel="noopener" class="prof-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Reservar por WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- Pediatría -->
+        <article class="prof-card">
+          <div class="prof-image">
+            <img src="IMG/Pediatria/profesion.jpg" alt="Dr. Agustina Mariana Romero" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder', 'p-pediatrics');" />
+            <span class="prof-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z"/></svg>
+              Pediatría
+            </span>
+          </div>
+          <div class="prof-body">
+            <h3 class="prof-name">Dr. Agustina Mariana Romero</h3>
+            <p class="prof-role">Pediatría · Control de niños y recien nacidos</p>
+            <p class="prof-desc">Acompaña el desarrollo de los más chicos desde el primer mes, con consultas serenas y tiempo real para cada familia.</p>
+            <a href="https://wa.me/5491136197463?text=Hola%20Mariana%2C%20quería%20consultar%20por%20un%20turno%20de%20pediatría" target="_blank" rel="noopener" class="prof-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Reservar por WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- Kinesiología -->
+        <article class="prof-card">
+          <div class="prof-image">
+            <img src="IMG/Kinesiologia/Profesion_2.jpg" alt="Lic. Roberto Mario Romero" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder', 'p-kine');" />
+            <span class="prof-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 11V7a3 3 0 016 0v4M5 11h14l-1 9H6l-1-9z"/></svg>
+              Kinesiología
+            </span>
+          </div>
+          <div class="prof-body">
+            <h3 class="prof-name">Lic. Roberto Mario Romero</h3>
+            <p class="prof-role">Kinesiología y fisioterapia</p>
+            <p class="prof-desc">Reeducación Postural Global (RPG), lesiones deportivas y dolores crónicos, con un enfoque práctico y resultados desde la primera sesión.</p>
+            <a href="https://wa.me/5491159822880?text=Hola%20Roberto%2C%20quería%20agendar%20un%20turno%20de%20para%20kinesiología" target="_blank" rel="noopener" class="prof-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Reservar por WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- Alto Rendimiento -->
+        <article class="prof-card">
+          <div class="prof-image">
+            <img src="IMG/PF/Profesion.jpg" alt="Lic. Roberto Nicolas Romero" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder', 'p-sport');" />
+            <span class="prof-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+              Alto Rendimiento
+            </span>
+          </div>
+          <div class="prof-body">
+            <h3 class="prof-name">Lic. Roberto Nicolas Romero</h3>
+            <p class="prof-role">Alto rendimiento deportivo</p>
+            <p class="prof-desc">Diseño de planes de entrenamiento personalizados para deportistas amateurs y profesionales, con foco en prevención y rendimiento.</p>
+            <a href="https://wa.me/5491135683328?text=Hola%20Nicolas%2C%20quería%20consultar%20por%20un%20plan%20deportivo%20personalizado" target="_blank" rel="noopener" class="prof-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Reservar por WhatsApp
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- CARRUSEL DE EQUIPO                             -->
+  <!-- ============================================= -->
+  <section id="equipo" class="py-20 lg:py-28">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+        <div class="max-w-xl">
+          <span class="inline-flex items-center gap-2 bg-accentSoft text-accent px-3 py-1.5 rounded-full text-xs font-semibold mb-5">
+            Nuestro equipo
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold text-ink leading-[1.15]">
+            Las caras detrás de The Six
+          </h2>
+        </div>
+
+        <div class="flex gap-2">
+          <button id="prevBtn" aria-label="Anterior" class="carousel-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button id="nextBtn" aria-label="Siguiente" class="carousel-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="carousel" class="overflow-hidden">
+        <div id="carouselTrack" class="flex gap-5">
+
+          <div class="carousel-slide">
+            <img src="IMG/Odontologia/Perfil.jpeg" alt="Dra. Mariana Veronica Szyszka" class="slide-img" />
+            <p class="slide-name">Dra. Mariana Veronica Szyszka</p>
+            <p class="slide-role">Odontología</p>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="IMG/Pediatria/Perfil.jpeg" alt="Dra. Mariana Agustina Romero" class="slide-img" />
+            <p class="slide-name">Dr. Mariana Agustina Romero</p>
+            <p class="slide-role">Pediatría</p>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="IMG/Kinesiologia/Perfil.jpeg" alt="Lic. Roberto Mario Romero" class="slide-img" />
+            <p class="slide-name">Lic. Roberto Mario Romero</p>
+            <p class="slide-role">Kinesiología</p>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="IMG/PF/Perfil.jpeg" alt="Lic. Roberto Nicolas Romero" class="slide-img" />
+            <p class="slide-name">Lic. Roberto Nicolas Romero</p>
+            <p class="slide-role">Alto rendimiento</p>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="IMG/PF/foto4.jpeg" alt="Lic. Roberto Nicolas Romero" class="slide-img" />
+            <p class="slide-name">Lic. Roberto Nicolas Romero</p>
+            <p class="slide-role">Alto rendimiento</p>
+          </div>
+
+          <!--<div class="carousel-slide">
+            <div class="slide-img placeholder p-clinic"></div>
+            <p class="slide-name">Espacios de The Six</p>
+            <p class="slide-role">Consultorios y salas</p>
+          </div>
+          /<div class="carousel-slide">
+            <div class="slide-img placeholder p-clinic"></div>
+            <p class="slide-name">Espacios de The Six</p>
+            <p class="slide-role">Consultorios y salas</p>
+          </div>-->
+
+        </div>
+      </div>
+
+      <div id="carouselDots" class="flex gap-2 justify-center mt-8"></div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- FORMULARIO DE CONTACTO                         -->
+  <!-- ============================================= -->
+  <section id="contacto" class="py-20 lg:py-28 bg-bg">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="bg-white border border-line rounded-3xl shadow-soft overflow-hidden grid lg:grid-cols-12">
+
+        <!-- Lado izquierdo: info -->
+        <div class="lg:col-span-5 bg-primary text-white p-8 md:p-10 flex flex-col">
+          <span class="inline-flex items-center gap-2 bg-white/15 text-white px-3 py-1.5 rounded-full text-xs font-semibold w-fit mb-5">
+            Contacto
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold leading-[1.15] mb-4">
+            Reservá tu primera consulta
+          </h2>
+          <p class="text-white/80 leading-relaxed mb-8">
+            Dejanos tus datos y te contactamos en menos de 24 horas para coordinar el turno con el profesional indicado.
+          </p>
+
+          <div class="space-y-4 text-sm mt-auto">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </span>
+              <span>25 de Mayo 67, Tristan Suarez</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+              <span>Lun a Vie · 9 a 20 hs · Sáb · 9 a 13 hs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="lg:col-span-7 p-8 md:p-10">
+          <form id="contactForm" class="space-y-5" novalidate>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div class="form-field">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" />
+              </div>
+              <div class="form-field">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" name="apellido" required placeholder="Tu apellido" />
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="consulta">Tu consulta</label>
+              <textarea id="consulta" name="consulta" rows="4" required placeholder="Contanos brevemente qué necesitás..."></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-primary text-white py-3.5 rounded-full text-sm font-semibold hover:bg-primaryDark transition shadow-button">
+              Enviar consulta
+            </button>
+
+            <p id="formMsg" class="text-sm text-center text-accent font-medium hidden">
+              ¡Gracias! Recibimos tu consulta y te respondemos a la brevedad.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- FOOTER                                         -->
+  <!-- ============================================= -->
+  <footer class="bg-white border-t border-line py-12">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="grid md:grid-cols-12 gap-8 mb-10">
+        <div class="md:col-span-5">
+          <a href="#inicio" class="flex items-center mb-3">
+            <img src="IMG/Logo(1).png" alt="The Six Consultorios Médicos" class="h-20 w-auto" />
+          </a>
+          <p class="text-sm text-muted leading-relaxed max-w-sm">
+            Consultorio multidisciplinario. Cuidamos tu salud desde una mirada integral, con un equipo cercano y profesional.
+          </p>
+        </div>
+
+        <div class="md:col-span-3">
+          <p class="text-xs uppercase tracking-wider text-muted font-semibold mb-3">Navegación</p>
+          <ul class="space-y-2 text-sm text-ink">
+            <li><a href="#nosotros" class="hover:text-primary transition">Nosotros</a></li>
+            <li><a href="#especialidades" class="hover:text-primary transition">Especialidades</a></li>
+            <li><a href="#equipo" class="hover:text-primary transition">Equipo</a></li>
+            <li><a href="#contacto" class="hover:text-primary transition">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-4">
+          <p class="text-xs uppercase tracking-wider text-muted font-semibold mb-3">Contacto</p>
+          <ul class="space-y-2 text-sm text-ink">
+            <li>Odontologia - 1136373969</li>
+            <li>Pediatria - 1136197463</li>
+            <li>Kinesiologia - 1159822880</li>
+            <li>Alto rendimiento - 1135683328</li>
+            <li>25 de Mayo 67, Tristan Suarez</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-line flex flex-col md:flex-row justify-between gap-3 text-xs text-muted">
+        <p>© 2026 The Six · Todos los derechos reservados</p>
+        <p>Buenos Aires, Argentina</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================= -->
+  <!-- MODAL: ELEGIR ESPECIALIDAD                     -->
+  <!-- ============================================= -->
+  <div id="specialtyModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button id="modalClose" class="modal-close" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <div class="text-center mb-6">
+        <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primarySoft mb-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00AEEF" stroke-width="1.8" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+          </svg>
+        </span>
+        <h3 id="modalTitle" class="text-xl font-bold text-ink">¿Con quién querés hablar?</h3>
+        <p class="text-sm text-muted mt-1">Elegí la especialidad y te conectamos directo por WhatsApp.</p>
+      </div>
+
+      <div id="specialtyList" class="grid grid-cols-2 gap-3"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

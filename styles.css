@@ -1,0 +1,481 @@
+/* ==========================================================
+   The Six — Estilos complementarios a Tailwind
+   Estética: clínica, confiable, limpia (estilo IntraMed)
+   ========================================================== */
+
+html { scroll-behavior: smooth; }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #00AEEF;
+  color: #0E1B33;
+}
+
+/* ==========================================================
+   SOMBRAS
+   ========================================================== */
+
+.shadow-soft {
+  box-shadow: 0 1px 2px rgba(14, 27, 51, 0.04),
+              0 4px 16px rgba(14, 27, 51, 0.05);
+}
+
+.shadow-card {
+  box-shadow: 0 2px 4px rgba(14, 27, 51, 0.04),
+              0 12px 32px rgba(14, 27, 51, 0.08);
+}
+
+.shadow-button {
+  box-shadow: 0 4px 14px rgba(0, 174, 239, 0.25);
+}
+
+/* ==========================================================
+   NAVBAR
+   ========================================================== */
+
+#navbar.scrolled > div > div {
+  box-shadow: 0 4px 24px rgba(14, 27, 51, 0.08);
+}
+
+.mobile-link {
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  color: #0E1B33;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+.mobile-link:hover {
+  background: #F7FAFE;
+  color: #00AEEF;
+}
+
+/* ==========================================================
+   ANIMACIÓN DE REVELADO AL SCROLL
+   ========================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================
+   FEATURE CARDS (sección Nosotros)
+   ========================================================== */
+
+.feature-card {
+  background: #ffffff;
+  border: 1px solid #E2EAF5;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.feature-card:hover {
+  border-color: #00AEEF;
+  transform: translateY(-2px);
+}
+
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 0.875rem;
+  background: #E0F6FF;
+  color: #00AEEF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================
+   PROFESSIONAL CARDS
+   ========================================================== */
+
+.prof-card {
+  background: #ffffff;
+  border: 1px solid #E2EAF5;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.prof-card:hover {
+  transform: translateY(-4px);
+  border-color: #A8DEFB;
+  box-shadow: 0 12px 40px rgba(14, 27, 51, 0.08);
+}
+
+.prof-image {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #F7FAFE;
+  overflow: hidden;
+}
+
+.prof-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.prof-card:hover .prof-image img {
+  transform: scale(1.03);
+}
+
+.prof-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  color: #00AEEF;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid #E2EAF5;
+}
+
+.prof-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.prof-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0E1B33;
+  margin-bottom: 0.25rem;
+}
+
+.prof-role {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #00AEEF;
+  margin-bottom: 0.75rem;
+}
+
+.prof-desc {
+  font-size: 0.9375rem;
+  color: #5B6B85;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.prof-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: #E6F8F3;
+  color: #1A8A73;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  align-self: flex-start;
+}
+
+.prof-btn:hover {
+  background: #34C7A8;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================
+   PLACEHOLDERS PARA IMÁGENES FALTANTES
+   Gradientes celestes coherentes con la marca
+   ========================================================== */
+
+.placeholder {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #E0F6FF 0%, #A8DEFB 100%);
+}
+
+.placeholder::before {
+  font-size: 3rem;
+  color: rgba(0, 174, 239, 0.35);
+  font-weight: 700;
+}
+
+.placeholder.p-tooth::before { content: "🦷"; filter: grayscale(0.2); opacity: 0.7; }
+.placeholder.p-pediatrics::before { content: "👶"; opacity: 0.8; }
+.placeholder.p-kine::before { content: "🤸"; opacity: 0.8; }
+.placeholder.p-sport::before { content: "🏃"; opacity: 0.8; }
+.placeholder.p-team::before { content: "👥"; opacity: 0.7; }
+.placeholder.p-clinic::before { content: "🏥"; opacity: 0.7; }
+
+/* ==========================================================
+   CARRUSEL
+   ========================================================== */
+
+.carousel-slide {
+  flex: 0 0 calc((100% - 1.25rem) / 2);
+}
+
+@media (min-width: 768px) {
+  .carousel-slide {
+    flex: 0 0 calc((100% - 2.5rem) / 3);
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel-slide {
+    flex: 0 0 calc((100% - 3.75rem) / 4);
+  }
+}
+
+.slide-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 1.25rem;
+  margin-bottom: 0.875rem;
+  object-fit: cover;
+  object-position: center top;
+  background: #E0F6FF;
+}
+
+.slide-name {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #0E1B33;
+  line-height: 1.3;
+}
+
+.slide-role {
+  font-size: 0.8125rem;
+  color: #5B6B85;
+  margin-top: 0.125rem;
+}
+
+.carousel-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #E2EAF5;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #0E1B33;
+  transition: all 0.25s ease;
+}
+.carousel-btn:hover {
+  background: #00AEEF;
+  border-color: #00AEEF;
+  color: #ffffff;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #E2EAF5;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+.carousel-dot.active {
+  width: 24px;
+  background: #00AEEF;
+}
+
+/* ==========================================================
+   FORMULARIO
+   ========================================================== */
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0E1B33;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  background: #F7FAFE;
+  border: 1px solid #E2EAF5;
+  border-radius: 0.875rem;
+  padding: 0.875rem 1rem;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  color: #0E1B33;
+  transition: all 0.25s ease;
+  resize: none;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #94A3B8;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #00AEEF;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(0, 174, 239, 0.1);
+}
+
+.form-field.error input,
+.form-field.error textarea {
+  border-color: #DC4747;
+  background: #FEF2F2;
+}
+
+/* ==========================================================
+   MODAL DE ESPECIALIDADES
+   ========================================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 27, 51, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-box {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(14, 27, 51, 0.18);
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  border: 1px solid #E2EAF5;
+  background: #ffffff;
+  color: #5B6B85;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.modal-close:hover {
+  background: #E0F6FF;
+  color: #00AEEF;
+  border-color: #00AEEF;
+}
+
+.specialty-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 1.25rem 0.75rem;
+  border: 1.5px solid #E2EAF5;
+  border-radius: 1rem;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+.specialty-btn:hover {
+  border-color: #00AEEF;
+  background: #E0F6FF;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 174, 239, 0.15);
+}
+.specialty-btn .spec-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.875rem;
+  background: #E0F6FF;
+  color: #00AEEF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+.specialty-btn:hover .spec-icon {
+  background: #00AEEF;
+  color: #ffffff;
+}
+.specialty-btn .spec-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0E1B33;
+  line-height: 1.2;
+}
+.specialty-btn .spec-prof {
+  font-size: 0.75rem;
+  color: #5B6B85;
+}
+
+/* ==========================================================
+   ACCESIBILIDAD: respetar reduced motion
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
